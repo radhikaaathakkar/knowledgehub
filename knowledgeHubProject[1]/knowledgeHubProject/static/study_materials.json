@@ -1,0 +1,18 @@
+[
+  {
+    "course": "devops",
+    "subject": "docker",
+    "semester": "Semester 2",
+    "material": "http://zelineprojects.shop",
+    "image": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fbuffer.com%2Flibrary%2Ffree-images%2F&psig=AOvVaw0xr788DXLKWFK51XZYLS94&ust=1702059561355000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCPibsI74_YIDFQAAAAAdAAAAABAD",
+    "description": "ff"
+  },
+  {
+    "course": "ccvt",
+    "subject": "computer graphics",
+    "semester": "Semester 1",
+    "material": "https://math.hws.edu/eck/cs424/downloads/graphicsbook-linked.pdf",
+    "image": "https://www.tutorialspoint.com/computer_graphics/images/computer_graphics_pdfcover.jpg",
+    "description": "computer graphics book."
+  }
+]

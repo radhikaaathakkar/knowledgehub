@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insert Material - Knowledge Hub</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url("{{ url_for('static', filename='images/bg.jpg') }}");
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            color: black;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Add New Study Material</h1>
+    <form id="add-material-form">
+        <label for="course">Course:</label>
+        <input type="text" name="course" required>
+
+        <label for="subject">Subject:</label>
+        <input type="text" name="subject" required>
+
+        <label for="semester">Semester:</label>
+        <select name="semester" required>
+            <option value="Semester 1">Semester 1</option>
+            <option value="Semester 2">Semester 2</option>
+            <option value="Semester 3">Semester 3</option>
+            <option value="Semester 4">Semester 4</option>
+        </select>
+
+        <label for="material">Material URL:</label>
+        <input type="url" name="material" required>
+
+        <label for="image">Course Image URL:</label>
+        <input type="url" name="image" required>
+
+        <label for="description">Course Description:</label>
+        <textarea name="description" required></textarea>
+
+        <button type="submit">Add Material</button>
+    </form>
+
+    <h1>Delete Study Material</h1>
+    <form id="delete-material-form">
+        <label for="course">Course:</label>
+        <input type="text" name="course" required>
+
+        <label for="subject">Subject:</label>
+        <input type="text" name="subject" required>
+
+        <label for="semester">Semester:</label>
+        <select name="semester" required>
+            <option value="Semester 1">Semester 1</option>
+            <option value="Semester 2">Semester 2</option>
+            <option value="Semester 3">Semester 3</option>
+            <option value="Semester 4">Semester 4</option>
+        </select>
+
+        <button type="submit">Delete Material</button>
+    </form>
+
+    <script>
+        document.getElementById("delete-material-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+    
+            const formData = new FormData(this);
+    
+            fetch('/delete_material', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    alert('Material deleted successfully!');
+                    // You may choose to redirect or update the UI as needed
+                } else {
+                    alert('Failed to delete material. ' + data.message);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    
+            document.getElementById("add-material-form").addEventListener("submit", function(event) {
+                event.preventDefault();
+    
+                const formData = new FormData(this);
+    
+                fetch('/add_material', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        alert('Material added successfully!');
+                        // You may choose to redirect or update the UI as needed
+                    } else {
+                        alert('Failed to add material.');
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            });
+        </script>
+</body>
+</html>
